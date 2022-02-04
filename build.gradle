@@ -1,4 +1,8 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
+    id 'idea'
+    id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
 }
 
@@ -9,6 +13,18 @@ apply from: rootProject.file('dependencies.gradle')
 
 repositories {
     mavenCentral()
+}
+
+idea {
+    project {
+        jdkName = "11"
+        languageLevel = JavaVersion.VERSION_11
+    }
+}
+
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+    kotlinOptions.jvmTarget = "11"
 }
 
 
@@ -27,4 +43,13 @@ dependencies {
     testRuntimeOnly jupiterEngine
     testImplementation kotlinTest
 
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events TestLogEvent.STANDARD_ERROR ,TestLogEvent.FAILED, TestLogEvent.SKIPPED
+        exceptionFormat = "full"
+        showStandardStreams = false
+    }
 }

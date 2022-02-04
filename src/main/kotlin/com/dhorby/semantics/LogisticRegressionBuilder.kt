@@ -4,6 +4,9 @@ import org.apache.spark.ml.classification.LogisticRegression
 import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
 import org.apache.spark.ml.feature.StringIndexer
 import org.apache.spark.ml.feature.VectorAssembler
+import org.apache.spark.mllib.classification.NaiveBayes
+import org.apache.spark.sql.Dataset
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.DataTypes.DoubleType
 import org.apache.spark.sql.types.DataTypes.StringType
@@ -26,7 +29,7 @@ class LogisticRegressionBuilder(val spark: SparkSession) {
             )
         )
 
-        val training = spark.read()
+        val training: Dataset<Row> = spark.read()
             .format("csv")
             .option("header", true)
             .option("delimiter", ",")
@@ -101,9 +104,6 @@ class LogisticRegressionBuilder(val spark: SparkSession) {
          * output
         0.85625
         */
-
-
-
 
     }
 
