@@ -1,6 +1,7 @@
 package com.dhorby.semantics.data
 
 import com.dhorby.semantics.model.Article
+import com.dhorby.semantics.parsers.toArticleList
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.junit.jupiter.api.Test
