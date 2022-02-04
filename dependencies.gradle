@@ -1,0 +1,47 @@
+ext {
+
+    kotlinVersion = "1.6.10"
+    kotlinSparkVersion = "1.0.0-preview1"
+    apacheSparkVersion = "3.1.2"
+    http4kVersion = '4.14.1.1'
+    junitPlatformVersion = "1.8.2"
+    junitJupiterVersion = "5.8.2"
+
+    kotlinDeps = [
+            "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    ]
+
+    apacheSpark = [
+            "org.apache.spark:spark-core_2.12:$apacheSparkVersion",
+            "org.apache.spark:spark-mllib_2.12:$apacheSparkVersion",
+
+            "org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0.0_2.12:$kotlinSparkVersion"
+    ]
+
+    forkHandles = [
+            "dev.forkhandles:result4k:2.0.0.0"
+    ]
+
+    /////////////////////////// TEST DEPENDENCIES ///////////////////////////
+
+    junit5 = [
+            "org.opentest4j:opentest4j:1.2.0",
+            "org.junit.platform:junit-platform-commons:$junitPlatformVersion",
+            "org.junit.platform:junit-platform-launcher:$junitPlatformVersion",
+            "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion",
+            "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+    ]
+
+    jupiterEngine = [
+            "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+    ]
+
+    kotlinTest = [
+            "org.http4k:http4k-testing-hamkrest:${http4kVersion}",
+    ]
+
+    result4kTest = [
+            "dev.mrbergin:result4k-kotest-matchers:1.0.0"
+    ]
+}
+

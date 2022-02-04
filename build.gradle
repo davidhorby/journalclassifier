@@ -2,36 +2,29 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
 }
 
-group 'org.example'
+group 'com.dhorby.example'
 version '1.0-SNAPSHOT'
+
+apply from: rootProject.file('dependencies.gradle')
 
 repositories {
     mavenCentral()
 }
 
-configurations.all {
-    resolutionStrategy.eachDependency { details ->
-        if (details.requested.group == 'org.scala-lang') {
-            details.useVersion '2.12.10'
-            details.because 'To avoid RCE vulnerability.'
-        }
-    }
-}
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-// https://mvnrepository.com/artifact/org.apache.spark/spark-core
-    implementation("org.apache.spark:spark-core_2.12:3.1.2")
-    implementation("org.apache.spark:spark-mllib_2.12:3.1.2")
+
+    implementation kotlinDeps
+    implementation apacheSpark
     compileOnly("org.apache.spark:spark-sql_2.12:3.1.2")
-
-    implementation('org.scala-lang:scala-library:2.12.10')
-    implementation("org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0.0_2.12:1.0.0-preview1")
-
+    implementation forkHandles
 
 
     implementation "org.apache.lucene:lucene-analyzers-common:8.11.1"
 
+    testImplementation junit5
+    testRuntimeOnly jupiterEngine
+    testImplementation kotlinTest
 
 }
